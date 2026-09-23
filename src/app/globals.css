@@ -638,7 +638,8 @@ button.text-link {
   overflow-x: auto;
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
-  padding: 2px 0 9px;
+  border: 1px solid var(--rule);
+  padding: 20px;
   scrollbar-color: var(--rule) transparent;
 }
 
@@ -647,23 +648,73 @@ button.text-link {
   outline-offset: 4px;
 }
 
+.contribution-chart {
+  display: grid;
+  grid-template-columns: 42px max-content;
+  gap: 8px;
+  width: max-content;
+}
+
+.contribution-weekdays {
+  display: grid;
+  grid-template-rows: repeat(7, 10px);
+  gap: 3px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 10px;
+}
+
+.contribution-weekdays span:nth-child(1) {
+  grid-row: 2;
+}
+
+.contribution-weekdays span:nth-child(2) {
+  grid-row: 4;
+}
+
+.contribution-weekdays span:nth-child(3) {
+  grid-row: 6;
+}
+
+.contribution-calendar {
+  display: grid;
+  gap: 7px;
+}
+
+.contribution-months {
+  display: grid;
+  grid-template-columns: repeat(53, 10px);
+  gap: 3px;
+  height: 18px;
+  padding: 0;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 18px;
+  list-style: none;
+}
+
+.contribution-months span {
+  width: max-content;
+  white-space: nowrap;
+}
+
 .contribution-grid {
   display: grid;
-  grid-template-rows: repeat(7, 11px);
-  grid-auto-flow: column;
-  grid-auto-columns: 11px;
-  gap: 4px;
+  grid-template-columns: repeat(53, 10px);
+  grid-template-rows: repeat(7, 10px);
+  gap: 3px;
   width: max-content;
-  min-width: 100%;
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
 .contribution-day {
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
   background: var(--contribution-0);
+  border-radius: 2px;
 }
 
 .contribution-day.level-1 {
@@ -682,10 +733,31 @@ button.text-link {
   background: var(--contribution-4);
 }
 
+.contribution-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 14px;
+}
+
 .contribution-summary {
-  margin-top: 16px;
   color: var(--subtle);
   font-size: 14px;
+}
+
+.contribution-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--subtle);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.contribution-legend .contribution-day {
+  display: block;
+  flex: 0 0 auto;
 }
 
 .copy {
@@ -822,12 +894,36 @@ button.text-link {
   }
 
   .contribution-scroll {
-    padding-bottom: 7px;
+    padding: 16px 14px 13px;
+  }
+
+  .contribution-chart {
+    grid-template-columns: 34px max-content;
+    gap: 7px;
+  }
+
+  .contribution-weekdays {
+    grid-template-rows: repeat(7, 10px);
+    gap: 3px;
+    font-size: 11px;
+    line-height: 10px;
+  }
+
+  .contribution-calendar {
+    gap: 6px;
+  }
+
+  .contribution-months {
+    grid-template-columns: repeat(53, 10px);
+    gap: 3px;
+    height: 16px;
+    font-size: 11px;
+    line-height: 16px;
   }
 
   .contribution-grid {
+    grid-template-columns: repeat(53, 10px);
     grid-template-rows: repeat(7, 10px);
-    grid-auto-columns: 10px;
     gap: 3px;
   }
 
@@ -836,8 +932,14 @@ button.text-link {
     height: 10px;
   }
 
-  .contribution-summary {
+  .contribution-footer {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px 16px;
     margin-top: 12px;
+  }
+
+  .contribution-summary {
     font-size: 14px;
     line-height: 1.65;
   }
