@@ -1,0 +1,12 @@
+# Dependencies and generated output
+node_modules/
+.next/
+out/
+
+# Local secrets. Keep the documented template tracked.
+.env*
+!.env.example
+
+# Local tooling
+*.tsbuildinfo
+.DS_Store
