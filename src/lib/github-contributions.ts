@@ -1,6 +1,8 @@
 import "server-only";
 import { site } from "@/lib/site";
 
+export const githubContributionsCacheTag = "github-contributions";
+
 export type ContributionLevel = 0 | 1 | 2 | 3 | 4;
 
 export type ContributionDay = {
@@ -104,7 +106,7 @@ export async function getGitHubContributions(): Promise<ContributionCalendar | n
       }),
       next: {
         revalidate: site.githubContributionsRevalidate,
-        tags: ["github-contributions"],
+        tags: [githubContributionsCacheTag],
       },
     });
 
