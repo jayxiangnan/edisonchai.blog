@@ -22,10 +22,16 @@ export function Header() {
       <div className="header-actions">
         <nav id="site-navigation" className={`nav ${open ? "open" : ""}`} aria-label="主导航">
           <Link onClick={closeMenu} href="/blog">
-            文章
+            Blog
           </Link>
           <Link onClick={closeMenu} href="/projects">
-            项目
+            Work
+          </Link>
+          <Link onClick={closeMenu} href="/about">
+            About
+          </Link>
+          <Link onClick={closeMenu} href="/rss.xml">
+            RSS
           </Link>
         </nav>
         <ThemeToggle />

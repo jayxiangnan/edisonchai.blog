@@ -1,66 +1,31 @@
 import Link from "next/link";
 import { GitHubContributions } from "@/components/github-contributions";
-import { articles } from "@/lib/content";
-import { projects } from "@/lib/projects";
 
 // Keep the homepage eligible for regeneration when GitHub credentials are added later.
 export const revalidate = 43_200;
 
 export default function Home() {
-  const posts = articles().slice(0, 3);
-  const featuredProjects = projects
-    .filter((project) => project.featured)
-    .sort((first, second) => first.order - second.order)
-    .slice(0, 4);
   return (
     <div className="home-layout">
+      <section className="home-identity" aria-labelledby="home-identity-heading">
+        <p className="eyebrow">关于我</p>
+        <h1 id="home-identity-heading">
+          我是 Edison，写代码，也写下那些在工作与生活里慢慢变清楚的事。
+        </h1>
+        <div className="home-identity-details">
+          <p>
+            我在银川，关心产品如何变得更有用，也关心工具是否为人留出了呼吸的空间。比起追逐每一个新名词，我更愿意在真实的问题前多停留一会儿。
+          </p>
+          <p>
+            这里会有软件开发、产品设计、学习方法与平常生活。它们看似分散，却都和同一个问题有关：如何更清醒地生活与创造。
+          </p>
+        </div>
+        <nav className="identity-links" aria-label="首页内容入口">
+          <Link href="/blog">浏览 Blog →</Link>
+          <Link href="/projects">查看 Work →</Link>
+        </nav>
+      </section>
       <GitHubContributions />
-      <section className="home-section posts" aria-labelledby="latest-posts-heading">
-        <div className="section-top">
-          <h2 className="section-heading" id="latest-posts-heading">
-            最新文章
-          </h2>
-          <Link href="/blog" className="text-link" aria-label="查看全部文章">
-            查看全部文章 →
-          </Link>
-        </div>
-        <div className="home-list" role="list">
-          {posts.map((p) => (
-            <article className="home-row home-post" key={p.slug} role="listitem">
-              <div className="meta">
-                {p.category} · {p.date}
-              </div>
-              <h3>
-                <Link href={`/blog/${p.slug}`}>{p.title}</Link>
-              </h3>
-              <p>{p.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-      <section className="home-section" aria-labelledby="projects-heading">
-        <div className="section-top">
-          <h2 className="section-heading" id="projects-heading">
-            项目
-          </h2>
-          <Link href="/projects" className="text-link" aria-label="查看全部项目">
-            查看全部 →
-          </Link>
-        </div>
-        <div className="home-list" role="list">
-          {featuredProjects.map((p) => (
-            <article className="home-row" key={p.slug} role="listitem">
-              <h3>
-                <Link href={`/projects#${p.slug}`}>{p.title}</Link>
-              </h3>
-              <p>{p.summary}</p>
-              <div className="meta">
-                {p.type} · {p.technologies.join("、")}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
     </div>
   );
 }
